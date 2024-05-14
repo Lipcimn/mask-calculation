@@ -1,8 +1,8 @@
 interface ISystem {
   returnBit: (valor: number, bitPosition: number) => number;
   maskResult: (
-    maskDesligada: number,
-    maskLigada: number
+    sIn: number,
+    sOut: number
   ) => [number, number, string, string];
 }
 
