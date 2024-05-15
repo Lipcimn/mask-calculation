@@ -1,5 +1,5 @@
 interface ISystem {
-  returnBits: (value: number) => number[];
+  returnBits: (valor: number) => number[];
   maskResult: (sIn: number, sOut: number) => [string, string, string, string];
 }
 
@@ -30,6 +30,5 @@ class System implements ISystem {
     ];
   };
 }
-
 const system = new System();
 console.log(system.maskResult(0b11001111, 0b00111111));
