@@ -5,10 +5,9 @@ interface ISystem {
 
 class System implements ISystem {
   returnBits = (value: number): number[] => {
-    let arrayBits: number[] = [];
-    const binary: string = value.toString(2).padStart(8, "0");
-    [...binary].forEach((bit) => arrayBits.push(Number(bit)));
-    return arrayBits;
+    const bitsString: string = value.toString(2).padStart(8, "0");
+    const bitsArray: number[] = [...bitsString].map(Number);
+    return bitsArray;
   };
   maskResult = (
     sIn: number,
