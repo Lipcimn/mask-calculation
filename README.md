@@ -4,7 +4,7 @@ Using input and output values
 
 ### Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/calculo_mascaras.git`
+1. Clone the repository: `git clone https://github.com/Lipcimn/mask-calculation.git`
 
 2. Install the dependencies: `npm install`
 
