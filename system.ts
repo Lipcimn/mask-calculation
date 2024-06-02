@@ -1,18 +1,21 @@
-interface ISystem {
-  returnBits: (valor: number) => number[];
-  maskResult: (sIn: number, sOut: number) => [string, string, string, string];
-}
+type ReturnBits = (valor: number) => number[];
+type MaskResult = (
+  sIn: number,
+  sOut: number
+) => {
+  maskOff: string;
+  maskOffHex: string;
+  maskOn: string;
+  maskOnHex: string;
+};
 
-class System implements ISystem {
-  returnBits = (value: number): number[] => {
+class System {
+  returnBits: ReturnBits = (value: number): number[] => {
     const bitsString: string = value.toString(2).padStart(8, "0");
     const bitsArray: number[] = [...bitsString].map(Number);
     return bitsArray;
   };
-  maskResult = (
-    sIn: number,
-    sOut: number
-  ): [string, string, string, string] => {
+  maskResult: MaskResult = (sIn: number, sOut: number) => {
     let maskOff: number = 0;
     let maskOn: number = 0;
     const bits_sIn: number[] = this.returnBits(sIn);
@@ -21,13 +24,14 @@ class System implements ISystem {
       maskOff += bits_sIn[i] === 1 && bits_sOut[i] === 0 ? 0 : 2 ** (7 - i);
       maskOn += bits_sIn[i] === 0 && bits_sOut[i] === 1 ? 2 ** (7 - i) : 0;
     }
-    return [
-      maskOff.toString(2).padStart(8, "0"),
-      maskOn.toString(2).padStart(8, "0"),
-      maskOff.toString(16),
-      maskOn.toString(16),
-    ];
+    return {
+      maskOff: maskOff.toString(2).padStart(8, "0"),
+      maskOffHex: `0x${maskOff.toString(16)}`,
+      maskOn: maskOn.toString(2).padStart(8, "0"),
+      maskOnHex: `Ox${maskOn.toString(16)}`,
+    };
   };
 }
+
 const system = new System();
 console.log(system.maskResult(0b11001111, 0b00111111));
