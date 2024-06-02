@@ -4,8 +4,8 @@ import prompt from "prompt-sync";
 const system = new System();
 const promptSync = prompt();
 
-const stIn = promptSync("Enter the stIn value: ");
-const stOut = promptSync("Enter the stOut value: ");
+const sIn = promptSync("Enter the sIn value: ");
+const sOut = promptSync("Enter the sOut value: ");
 
-const result = system.maskResult(Number(`0b${stIn}`), Number(`0b${stOut}`));
+const result = system.maskResult(Number(`0b${sIn}`), Number(`0b${sOut}`));
 console.log(result);
